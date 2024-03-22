@@ -1,6 +1,11 @@
 # ME5413_Planning_Project
 
-NUS ME5413 Autonomous Mobile Robotics Planning Project
+NUS ME5413 Autonomous Mobile Robotics Planning Project.
+
+In this project, we implement a <pure_persuit_node.py> (src/me5413_world/scripts/pure_persuit_node.py) to replace the original <path_tracker_node.cpp> to achieve path tracking of a figure '8'. 
+
+Usage of this implementation is the same as the provided example.
+
 > Authors: [Ziggy](https://github.com/ziggyhuang) and [Shuo](https://github.com/SS47816)
 > 
 > Modified by Group16: Tang Haodi, Wang Yiwen, Zhang Xinming
@@ -11,8 +16,6 @@ NUS ME5413 Autonomous Mobile Robotics Planning Project
 ![Python](https://img.shields.io/badge/Code-Python-informational?style=flat&logo=Python&logoColor=white&color=2bbc8a)
 ![GitHub Repo stars](https://img.shields.io/github/stars/NUS-Advanced-Robotics-Centre/ME5413_Planning_Project?color=FFE333)
 ![GitHub Repo forks](https://img.shields.io/github/forks/NUS-Advanced-Robotics-Centre/ME5413_Planning_Project?color=FFE333)
-
-![cover_image](src/me5413_world/media/rviz_overview.png)
 
 ## Dependencies
 
@@ -79,38 +82,34 @@ roslaunch me5413_world world.launch
 
 ### 1. Path Tracking
 
-In the second terminal, launch the path publisher node and the path tracker node:
+In the second terminal, launch the path publisher node and the pure persuit node:
 
 ```bash
 # Load a map and launch AMCL localizer
 roslaunch me5413_world path_tracking.launch
 ```
 
-![rviz_tracking_image](src/me5413_world/media/rviz_tracking.png)
+![rviz_tracking_image](src/me5413_world/media/rviz_pure_persuit_tracking.png)
 
-## Student Tasks
+### 2. Rqt_reconfigure
 
-* Control your robot to follow the given **figure 8** track.
-  * You may use any algorithms you like.
-  * Implement your algorithms in the `src/me5413_world/include/me5413_world/path_tracker_node.hpp` and `src/me5413_world/src/path_tracker_node.cpp`, to replace our template code.
-  * Test your algorithms on the track & Report your tracking accuracy.
-  
-* In the template code, we have provided you:
-  * A dumb **PID** controller for the throttle.
-  * A weird **Stanley** controller for the steering.
-  * However, both are not properly configured or tuned.
-  
-* We have provided you a dynamic reconfigure GUI that allows you to tune some of the parameters:
-  
-  ![rqt_reconfig_image](src/me5413_world/media/rqt_reconfig.png)
+You can use the dynamic reconfigure GUI to tune the parameters used in pure persuit.
 
-* We also provides you six topics (and visualized in RVIZ) that computes the real-time errors between your robot and the tracking path:
-  * `/me5413_world/planning/abs_position_error` ([m], `std_msgs::Float32`)
-  * `/me5413_world/planning/abs_heading_error` ([deg], `std_msgs::Float32`)
-  * `/me5413_world/planning/abs_speed_error` ([m/s], `std_msgs::Float32`)
-  * `/me5413_world/planning/rms_position_error` ([m], `std_msgs::Float32`)
-  * `/me5413_world/planning/rms_heading_error` ([deg], `std_msgs::Float32`)
-  * `/me5413_world/planning/rms_speed_error` ([m/s], `std_msgs::Float32`)
+![rqt_reconfig_image](src/me5413_world/media/rqt_reconfigure_pure_persuit.png)
+
+
+## Results
+
+* The final tracking accuracy of pure persuit is shown in the figure above, metrics are reported below:
+  * RMSE(xy): 0.61
+  * RMSE(yaw): 32.76
+  * RMSE(spped):0.05
+  
+* The parameters we tuned for pure persuit is shown in the above rqt GUI, those values are set as default values in <pure_persuit.cfg>:
+  * speed_target: 0.5  (fixed)
+  * lookahead_distance: 1.8
+  * steering_gain: 0.8
+  
 
 ## Contribution
 
