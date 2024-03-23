@@ -102,7 +102,7 @@ You can use the dynamic reconfigure GUI to tune the parameters used in pure pers
 
 * The final tracking accuracy of pure persuit is shown in the figure above, metrics are reported below:
   * RMSE(xy): 0.61
-  * RMSE(yaw): 32.76
+  * RMSE(yaw): 3.3
   * RMSE(spped):0.05
   
 * The parameters we tuned for pure persuit is shown in the above rqt GUI, those values are set as default values in <pure_persuit.cfg>:
