@@ -89,7 +89,7 @@ In the second terminal, launch the path publisher node and the pure persuit node
 roslaunch me5413_world path_tracking.launch
 ```
 
-![rviz_tracking_image](src/me5413_world/media/rviz_pure_persuit_tracking.png)
+![rviz_tracking_image](src/me5413_world/media/rviz_pure_persuit.png)
 
 ### 2. Rqt_reconfigure
 
